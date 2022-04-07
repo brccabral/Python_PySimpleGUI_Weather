@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+sg.theme('reddit')
 image_col = sg.Column([[sg.Image("", key="-IMAGE-", background_color="white")]])
 info_col = sg.Column(
     [
