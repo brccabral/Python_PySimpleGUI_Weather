@@ -12,6 +12,12 @@ def get_weather_data(location: str):
     html = session.get(url)
 
     soup = bs(html.text, "html.parser")
+    name = soup.find("div", attrs={"id": "wob_loc"}).text
+    time = soup.find("div", attrs={"id": "wob_dts"}).text
+    weather = soup.find("span", attrs={"id": "wob_dc"}).text
+    temp = soup.find("span", attrs={"id": "wob_tm"}).text
+
+    return name, time, weather, temp
 
 
 sg.theme("reddit")
@@ -72,10 +78,10 @@ while True:
         break
 
     if event == "-ENTER-":
-        get_weather_data(values["-INPUT-"])
-        window["-LOCATION-"].update("test", visible=True)
-        window["-TIME-"].update("test", visible=True)
-        window["-TEMP-"].update("test", visible=True)
+        name, time, weather, temp = get_weather_data(values["-INPUT-"])
+        window["-LOCATION-"].update(name, visible=True)
+        window["-TIME-"].update(time, visible=True)
+        window["-TEMP-"].update(temp, visible=True)
         window["-IMAGE-"].update("symbols/snow.png", visible=True)
 
 window.close()
