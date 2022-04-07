@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 
-sg.theme('reddit')
+sg.theme("reddit")
 image_col = sg.Column([[sg.Image("", key="-IMAGE-", background_color="white")]])
 info_col = sg.Column(
     [
@@ -10,6 +10,7 @@ info_col = sg.Column(
                 key="-LOCATION-",
                 font="Calibri 30",
                 background_color="red",
+                text_color="white",
                 pad=0,
                 visible=False,
             )
@@ -42,7 +43,10 @@ info_col = sg.Column(
 )
 
 layout = [
-    [sg.Input(key="-INPUT-", expand_x=True), sg.Button("Enter", key="-ENTER-")],
+    [
+        sg.Input(key="-INPUT-", expand_x=True),
+        sg.Button("Enter", key="-ENTER-", button_color="black", border_width=0),
+    ],
     [image_col, info_col],
 ]
 
