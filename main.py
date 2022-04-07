@@ -80,8 +80,8 @@ while True:
     if event == "-ENTER-":
         name, time, weather, temp = get_weather_data(values["-INPUT-"])
         window["-LOCATION-"].update(name, visible=True)
-        window["-TIME-"].update(time, visible=True)
-        window["-TEMP-"].update(temp, visible=True)
+        window["-TIME-"].update(time.split(" ")[0], visible=True)
+        window["-TEMP-"].update(f"{temp} \u2103 ({weather})", visible=True)
         window["-IMAGE-"].update("symbols/snow.png", visible=True)
 
 window.close()
