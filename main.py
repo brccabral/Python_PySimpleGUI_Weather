@@ -1,4 +1,18 @@
 import PySimpleGUI as sg
+from bs4 import BeautifulSoup as bs
+import requests
+
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
+
+
+def get_weather_data(location: str):
+    url = f"https://www.google.com/search?q=weather+{location.replace(' ', '%20')}"
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    html = session.get(url)
+
+    soup = bs(html.text, "html.parser")
+
 
 sg.theme("reddit")
 image_col = sg.Column([[sg.Image("", key="-IMAGE-", background_color="white")]])
@@ -50,7 +64,7 @@ layout = [
     [image_col, info_col],
 ]
 
-window = sg.Window("Wheather", layout)
+window = sg.Window("Weather", layout)
 
 while True:
     event, values = window.read()
@@ -58,6 +72,7 @@ while True:
         break
 
     if event == "-ENTER-":
+        get_weather_data(values["-INPUT-"])
         window["-LOCATION-"].update("test", visible=True)
         window["-TIME-"].update("test", visible=True)
         window["-TEMP-"].update("test", visible=True)
