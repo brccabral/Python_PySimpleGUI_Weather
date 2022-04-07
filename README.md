@@ -8,3 +8,6 @@ pip install pysimplegui
 pip install beautifulsoup4
 pip install requests
 ```
+
+### Known bugs
+1. If location is not found beautifulsoup throws an error
