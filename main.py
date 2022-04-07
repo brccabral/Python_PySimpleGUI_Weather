@@ -27,7 +27,7 @@ info_col = sg.Column(
         [
             sg.Text(
                 "",
-                key="-TIME-",
+                key="-TEMP-",
                 font="Calibri 16",
                 justification="center",
                 expand_x=False,
@@ -51,5 +51,11 @@ while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED:
         break
+
+    if event == "-ENTER-":
+        window["-LOCATION-"].update("test", visible=True)
+        window["-TIME-"].update("test", visible=True)
+        window["-TEMP-"].update("test", visible=True)
+        window["-IMAGE-"].update("symbols/snow.png", visible=True)
 
 window.close()
