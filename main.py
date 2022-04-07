@@ -82,6 +82,67 @@ while True:
         window["-LOCATION-"].update(name, visible=True)
         window["-TIME-"].update(time.split(" ")[0], visible=True)
         window["-TEMP-"].update(f"{temp} \u2103 ({weather})", visible=True)
-        window["-IMAGE-"].update("symbols/snow.png", visible=True)
+
+        # sun
+        if weather in (
+            "Sun",
+            "Sunny",
+            "Clear",
+            "Clear with periodic clouds",
+            "Mostly sunny",
+        ):
+            symbol_img = "symbols/sun.png"
+
+        # part sun
+        elif weather in (
+            "Partly Sunny",
+            "Mostly Sunny",
+            "Partly cloudy",
+            "Mostly cloudy",
+            "Cloudy",
+            "Overcast",
+        ):
+            symbol_img = "symbols/part sun.png"
+
+        # rain
+        elif weather in (
+            "Rain",
+            "Chance of Rain",
+            "Light Rain",
+            "Showers",
+            "Scattered Showers",
+            "Rain and Snow",
+            "Hail",
+        ):
+            symbol_img = "symbols/rain.png"
+
+        # thunder
+        elif weather in (
+            "Scattered Thunderstorms",
+            "Chance of Storm",
+            "Storm",
+            "Thunderstorm",
+            "Chance of TStorm",
+        ):
+            symbol_img = "symbols/thunder.png"
+
+        # fog
+        elif weather in ("Mist", "Dust", "Fog", "Smoke", "Haze", "Flurries"):
+            symbol_img = "symbols/fog.png"
+
+        # snow
+        elif weather in (
+            "Freezing Drizzle",
+            "Chance of Snow",
+            "Sleet",
+            "Snow",
+            "Icy",
+            "Snow Showers",
+        ):
+            symbol_img = "symbols/snow.png"
+        else:
+            symbol_img = ""
+
+        window["-IMAGE-"].update(symbol_img, visible=True)
 
 window.close()
